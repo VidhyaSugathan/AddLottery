@@ -1,30 +1,19 @@
-import "../styles/LotteryList.css";
-function LotteryList({label1,label2,label3,label4,array,value1,value2,value3,value4})
-{console.log(array)
+import React, { useState } from "react";
+import List from "./List";
+import axios from "axios";
+export default function Admin(){
+    const [array,setArray]=useState([]);
+    
+    let url="http://localhost:8000/lotterylist";
+    let req={};
+    let header={};
+    useState(()=>{
+        axios.post(url, req, header).then((res) => {
+            console.log("success",res.data)
+            setArray(res.data)
+        }).catch();
+    },[])
     return(
-        <div className="list">
-            <table className="list_table">
-                <tr className="list_table_row1">
-                    <th className="list_table_row1_clm1">{label1}</th>
-                    <th className="list_table_row1_clm2">{label2}</th>
-                    <th>{label3}</th>
-                    <th className="list_table_row1_clm4">{label4}</th>
-                </tr>
-                {/* {array.map((item,index) => {
-                    return(
-                        <>
-                         <tr>
-                           <td>{item[value1]}</td>
-                           <td>{item[value2]}</td>
-                           <td>{item[value3]}</td>
-                           <td><span>{item[value4]}</span></td>
-                         </tr>
-                        </>
-                    );
-                })} */}
-               
-            </table>
-        </div>
-    );
-}
-export default  LotteryList;
+        <List array={array} label1="Lottery Name" value1={"txtLotteryname"} label2="Draw Date" value2={"dtLotterydrawdate"} label3="Lottery Prize" value3={"txtLotteryprize"} label4="Ticket Cost" value4={"txtCost"}/>
+    )
+};

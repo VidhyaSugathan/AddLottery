@@ -14,23 +14,22 @@ export default function AddLottery() {
     const [lotterypurchase, setLotterypurchase] = useState("");
     const [lotteryselect, setLotteryselection] = useState("");
     const [lotterysub, setLotterysub] = useState("");
-
     const handleAddlottery = () => {
         let url = "http://localhost:8000/addlottery"
         let req = {
-            lotteryname:lotteryadd,
-            lotterydate:lotterydate,
-            lotteryprize:lotteryprize,
-            lotterystatus:lotterystatus,
-            lotterystart:lotterystart,
-            lotteryend:lotteryend,
-            lotterycost:lotterycost,
-            lotterypurchase:lotterypurchase,
-            lotteryselection:lotteryselect,
-            lotterysub:lotterysub
+            lotteryname: lotteryadd,
+            lotterydate: lotterydate,
+            lotteryprize: lotteryprize,
+            lotterystatus: lotterystatus,
+            lotterystart: lotterystart,
+            lotteryend: lotteryend,
+            lotterycost: lotterycost,
+            lotterypurchase: lotterypurchase,
+            lotteryselection: lotteryselect,
+            lotterysub: lotterysub
         }
         console.log(req)
-        let header={}
+        let header = {}
         axios.post(url, req, header).then((res) => {
             console.log("Success", res.data);
         }).catch();
@@ -45,31 +44,31 @@ export default function AddLottery() {
 
                         </div>
                         <div>
-                            <Input name="Draw Date" onChange={(e) => {setLotterydate(e.target.value) }} />
+                            <Input name="Draw Date" onChange={(e) => { setLotterydate(e.target.value) }} />
 
                         </div>
                         <div>
-                            <Input name="Lottery Prize" onChange={(e) => { setLotteryprize(e.target.value) }}/>
+                            <Input name="Lottery Prize" onChange={(e) => { setLotteryprize(e.target.value) }} />
                         </div>
                         <div>
-                            <Input name="Lottery Status" onChange={(e) => { setLotterystatus(e.target.value) }}/>
+                            <Input name="Lottery Status" onChange={(e) => { setLotterystatus(e.target.value) }} />
                         </div>
                         <div>
-                            <Input name="Lottery Cost" onChange={(e) => { setLotterycost(e.target.value) }}/>
+                            <Input name="Lottery Cost" onChange={(e) => { setLotterycost(e.target.value) }} />
                         </div>
                     </div>
                     <div className="AddLottery_labels_col">
                         <div>
-                            <Input name="Start Range" onChange={(e) => { setLotterystart(e.target.value) }}/>
+                            <Input name="Start Range" onChange={(e) => { setLotterystart(e.target.value) }} />
                         </div>
                         <div>
-                            <Input name="End Range" onChange={(e) => { setLotteryend(e.target.value) }}/>
+                            <Input name="End Range" onChange={(e) => { setLotteryend(e.target.value) }} />
                         </div>
                         <div>
-                            <Input name="Selection Limit" onChange={(e) => { setLotteryselection(e.target.value) }}/>
+                            <Input name="Selection Limit" onChange={(e) => { setLotteryselection(e.target.value) }} />
                         </div>
                         <div>
-                            <Input name="Purchasing Limit" onChange={(e) => { setLotterypurchase(e.target.value) }}/>
+                            <Input name="Purchasing Limit" onChange={(e) => { setLotterypurchase(e.target.value) }} />
                         </div>
                         <div>
                             <Input name="Sub Lottery" onChange={(e) => { setLotterysub(e.target.value) }} />
@@ -81,7 +80,7 @@ export default function AddLottery() {
                         <button>Edit</button>
                     </div>
                     <div>
-                        <button onClick={(e)=>{handleAddlottery(e)}}>Add Lottery</button>
+                        <button onClick={(e) => { handleAddlottery(e) }}>Add Lottery</button>
                     </div>
                 </div>
             </div>

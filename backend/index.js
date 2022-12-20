@@ -58,16 +58,36 @@ app.post("/editlottery", function (req, res) {
 //------------------------SUB LOTTERY--------------------------//
 
 app.post("/sublottery", function (req, res) {
-    let id = req.body.id
-    let raffle = req.body.raffle;
+    let id = req.body.id;
     let sublottery = req.body.sublottery;
-    var sql = "UPDATE tbllotterymaster SET txtRaffleid='" + raffle + "',txtSubLottery='" + sublottery + "' WHERE id = '" + id + "';";
+    var sql = "UPDATE tbllotterymaster SET txtRaffleid='1',txtSubLottery='" + sublottery + "' WHERE id = '" + id + "';";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log(result);
         res.send(result);
     });
 });
+
+//-----------------------LOTTERY LIST------------------------//
+app.post("/lotterylist", function (req, res) {
+var sql="select txtLotteryname,dtLotterydrawdate,txtLotteryprize,txtCost from tbllotterymaster;";
+con.query(sql,function(err,result){
+    if(err) throw err;
+    console.log(result);
+    res.send(result);
+});
+});
+
+//-----------------------LOTTERY EXILE------------------------//
+app.post("/lotteryexile", function (req, res) {
+    var sql="select txtLotteryname,dtLotterydrawdate from tbllotterymaster where dtLotterydrawdate < now();";
+    con.query(sql,function(err,result){
+        if(err) throw err;
+        console.log(result);
+        res.send(result);
+    });
+    });
+    
 app.listen(8000, () => {
     console.log("Running")
 });

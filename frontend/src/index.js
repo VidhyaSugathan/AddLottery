@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from './components/AddLottery';
+import App from './components/LotteryList';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
