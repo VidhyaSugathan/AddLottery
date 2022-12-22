@@ -27,7 +27,7 @@ app.post("/addlottery", function (req, res) {
     let lotteryselection = req.body.lotteryselection;
     let lotterypurchase = req.body.lotterypurchase;
     let lotterysub = req.body.lotterysub;
-    var sql = "insert into tbllotterymaster(txtLotteryname,dtLotterydrawdate,txtLotteryprize,txtCost,txtLotterystatus,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery) values('" + lotteryname + "','" + lotterydate + "','" + lotteryprize + "','" + lotterycost + "','" + lotterystatus + "','" + lotterystart + "','" + lotteryend + "','" + lotteryselection + "','" + lotterypurchase + "','" + lotterysub + "');";
+    var sql = "insert into tbllotterymaster(txtLotteryname,dtLotterydrawdate,txtLotteryprize,txtCost,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery) values('" + lotteryname + "','" + lotterydate + "','" + lotteryprize + "','" + lotterycost + "','" + lotterystart + "','" + lotteryend + "','" + lotteryselection + "','" + lotterypurchase + "','" + lotterysub + "');";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log(result);
@@ -37,7 +37,7 @@ app.post("/addlottery", function (req, res) {
 
 //--------------------ADD LOTTERY PROVIDER----------------------//
 app.post("/addlotteryproviderfetch", function (req, res) {
-    var sql="SELECT txtProvidername FROM tblprovider;";
+    var sql="SELECT id, txtProvidername FROM tblprovider;";
     con.query(sql,function(err,result){
         if(err) throw err;
         console.log(result);
@@ -47,7 +47,7 @@ app.post("/addlotteryproviderfetch", function (req, res) {
 //--------------------ADD LOTTERY EXISTING----------------------//
 app.post("/addlotteryexist", function (req, res) {
     let refProvider=req.body.refProvider
-    var sql="select txtLotteryname from tbllotterymaster r join tblprovider i on i.id = r.refProvider  where refProvider='"+refProvider+"';";
+    var sql="select id,txtLotteryname from tbllotterymaster where refProvider='"+refProvider+"';";
     con.query(sql,function(err,result){
         if(err) throw err;
         console.log(result);
