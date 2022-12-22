@@ -35,6 +35,38 @@ app.post("/addlottery", function (req, res) {
     });
 });
 
+//--------------------ADD LOTTERY PROVIDER----------------------//
+app.post("/addlotteryproviderfetch", function (req, res) {
+    var sql="SELECT txtProvidername FROM tblprovider;";
+    con.query(sql,function(err,result){
+        if(err) throw err;
+        console.log(result);
+        res.send(result);
+    });
+    });
+//--------------------ADD LOTTERY EXISTING----------------------//
+app.post("/addlotteryexist", function (req, res) {
+    let refProvider=req.body.refProvider
+    var sql="select txtLotteryname from tbllotterymaster r join tblprovider i on i.id = r.refProvider  where refProvider='"+refProvider+"';";
+    con.query(sql,function(err,result){
+        if(err) throw err;
+        console.log(result);
+        res.send(result);
+    });
+    });
+
+//--------------------ADD LOTTERY EXISTING DETAILS--------------------- //
+
+app.post("/addlotterydetails", function (req, res) {
+    let id=req.body.id;
+    var sql="select dtLotterydrawdate,txtLotteryprize,txtCost,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery from tbllotterymaster where id = '"+id+"';";
+    con.query(sql,function(err,result){
+        if(err) throw err;
+        console.log(result);
+        res.send(result);
+    });
+    });
+
 //-------------------------EDIT LOTTERY--------------------------//
 
 app.post("/editlottery", function (req, res) {
