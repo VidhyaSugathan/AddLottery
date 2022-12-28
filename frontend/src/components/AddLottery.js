@@ -6,7 +6,7 @@ import axios from "axios";
 import { MdArrowDropDownCircle } from "react-icons/md";
 import Collapsible from "react-collapsible";
 export default function AddLottery() {
-    const [id, setId] = useState("");
+
     const [lotterydate, setLotterydate] = useState("");
     const [lotteryprize, setLotteryprize] = useState("");
     const [lotterystart, setLotterystart] = useState("");
@@ -63,10 +63,10 @@ export default function AddLottery() {
                 console.log("lotteryname", res.data)
             })
             .catch();
-       
+
         let url2 = "http://localhost:8000/addlotterydetails";
         let req2 = {
-            id:id
+            id: id
         };
         let header2 = {};
         axios.post(url2, req2, header2)
@@ -125,36 +125,38 @@ export default function AddLottery() {
                     </div>
                     <Collapsible trigger={<div className="AddLottery_subheader"><span><MdArrowDropDownCircle></MdArrowDropDownCircle></span>Lottery Details</div>}>
                         <div className="AddLottery_labels">
-                            <div className="AddLottery_labels_col">
-                                <div>
-                                    <Input name="Draw Date" value={lotterydate} onChange={(e) => { setLotterydate(e.target.value) }} />
-
-                                </div>
-                                <div>
-                                    <Input name="Lottery Prize" value={lotteryprize}onChange={(e) => { setLotteryprize(e.target.value) }} />
-                                </div>
-                                <div>
-                                    <Input name="Lottery Cost"value={lotterycost} onChange={(e) => { setLotterycost(e.target.value) }} value={lotterycost} />
-                                </div>
-                                <div>
-                                    <Input name="Sub Lottery"value={lotterysub} onChange={(e) => { setLotterysub(e.target.value) }} />
-                                </div>
+                            <div>
+                                <Input name="Draw Date" value={lotterydate} onChange={(e) => { setLotterydate(e.target.value) }} />
                             </div>
-                            <div className="AddLottery_labels_col">
-                                <div>
-                                    <Input name="Start Range"value={lotterystart} onChange={(e) => { setLotterystart(e.target.value) }} />
-                                </div>
-                                <div>
-                                    <Input name="End Range"value={lotteryend} onChange={(e) => { setLotteryend(e.target.value) }} />
-                                </div>
-                                <div>
-                                    <Input name="Selection Limit"value={lotteryselect} onChange={(e) => { setLotteryselection(e.target.value) }} />
-                                </div>
-                                <div>
-                                    <Input name="Purchasing Limit"value={lotterypurchase} onChange={(e) => { setLotterypurchase(e.target.value) }} />
-                                </div>
-
+                            <div>
+                                <Input name="Ticket Cost" value={lotteryprize} onChange={(e) => { setLotteryprize(e.target.value) }} />
                             </div>
+                            <div>
+                                <Input name="Purchased Amount per unit" value={lotterycost} onChange={(e) => { setLotterycost(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Unit Sale Amount" value={lotterycost} onChange={(e) => { setLotterycost(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Admin Charge per Unit" value={lotterycost} onChange={(e) => { setLotterycost(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Sub Lottery" value={lotterysub} onChange={(e) => { setLotterysub(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Start Range" value={lotterystart} onChange={(e) => { setLotterystart(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="End Range" value={lotteryend} onChange={(e) => { setLotteryend(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Selection Limit" value={lotteryselect} onChange={(e) => { setLotteryselection(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Purchasing Limit" value={lotterypurchase} onChange={(e) => { setLotterypurchase(e.target.value) }} />
+                            </div>
+
+
                         </div>
                         <div className="AddLottery_buttons">
                             <div>
@@ -165,9 +167,56 @@ export default function AddLottery() {
                             </div>
                         </div>
                     </Collapsible>
+                    <Collapsible trigger={<div className="AddLottery_subheader"><span><MdArrowDropDownCircle></MdArrowDropDownCircle></span>Lottery Deductions</div>}>
+                        <div className="AddLottery_labels">
 
+                            <div>
+                                <Input name="Agent Commission" value={lotterystart} onChange={(e) => { setLotterystart(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Tax" value={lotteryend} onChange={(e) => { setLotteryend(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Commission Rate" value={lotteryend} onChange={(e) => { setLotteryend(e.target.value) }} />
+                            </div>
 
+                            <div>
+                                <Input name="Other Deductions 1" value={lotteryselect} onChange={(e) => { setLotteryselection(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Other Deductions 2" value={lotterypurchase} onChange={(e) => { setLotterypurchase(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Charity Percentage" value={lotteryend} onChange={(e) => { setLotteryend(e.target.value) }} />
+                            </div>
+                        </div>
 
+                    </Collapsible>
+                    <Collapsible trigger={<div className="AddLottery_subheader"><span><MdArrowDropDownCircle></MdArrowDropDownCircle></span>Lottery Prize Money</div>}>
+                        <div className="AddLottery_labels">
+
+                            <div>
+                                <Input name="First Prize" value={lotterystart} onChange={(e) => { setLotterystart(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Second Prize" value={lotteryend} onChange={(e) => { setLotteryend(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Third Prize" value={lotteryend} onChange={(e) => { setLotteryend(e.target.value) }} />
+                            </div>
+
+                            <div>
+                                <Input name="Fourth Prize" value={lotteryselect} onChange={(e) => { setLotteryselection(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Fifth Prize" value={lotterypurchase} onChange={(e) => { setLotterypurchase(e.target.value) }} />
+                            </div>
+                            <div>
+                                <Input name="Sixth Prize" value={lotterypurchase} onChange={(e) => { setLotterypurchase(e.target.value) }} />
+                            </div>
+                        </div>
+
+                    </Collapsible>
                 </Collapsible>
             </div >
 
