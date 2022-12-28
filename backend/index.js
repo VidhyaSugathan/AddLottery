@@ -18,16 +18,21 @@ con.connect(function (err) {
 //--------------------ADD LOTTERY--------------------- //
 app.post("/addlottery", function (req, res) {
     let lotteryname = req.body.lotteryname;
-    let lotterydate = req.body.lotterydate
-    let lotteryprize = req.body.lotteryprize;
+    let lotterydate = req.body.lotterydate;
     let lotterycost = req.body.lotterycost;
-    let lotterystatus = req.body.lotterystatus;
+    let unitsaleamount=req.body.unitsaleamount;
+    let adminchargeperunit=req.body.adminchargeperunit;
     let lotterystart = req.body.lotterystart;
     let lotteryend = req.body.lotteryend;
     let lotteryselection = req.body.lotteryselection;
     let lotterypurchase = req.body.lotterypurchase;
     let lotterysub = req.body.lotterysub;
-    var sql = "insert into tbllotterymaster(txtLotteryname,dtLotterydrawdate,txtLotteryprize,txtCost,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery) values('" + lotteryname + "','" + lotterydate + "','" + lotteryprize + "','" + lotterycost + "','" + lotterystart + "','" + lotteryend + "','" + lotteryselection + "','" + lotterypurchase + "','" + lotterysub + "');";
+    let agentcommission=req.body.agentcommission;
+    let tax=req.body.tax;
+    let commissionrate=req.body.commissionrate
+    let otherdeduct1=req.body.otherdeduct1;
+    let otherdeduct2=req.body.otherdeduct2;
+    var sql = "insert into tbllotterymaster(txtLotteryname,dtLotterydrawdate,txtCost,txtUnitSaleAmount,txtAdminChargeperUnit,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery,txtAgentCommission,txtTax ,txtOtherDeduct1 ,txtOtherDeduct2,txtCommissionrate,) values('" + lotteryname + "','" + lotterydate + "','"+unitsaleamount+"','"+adminchargeperunit+"','" + lotterycost + "','" + lotterystart + "','" + lotteryend + "','" + lotteryselection + "','" + lotterypurchase + "','" + lotterysub + "','"+agentcommission+"','"+tax+"','"+otherdeduct1+"','"+otherdeduct2+"','"+commissionrate+"' );";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log(result);
@@ -44,7 +49,7 @@ app.post("/addlotteryproviderfetch", function (req, res) {
         res.send(result);
     });
     });
-//--------------------ADD LOTTERY EXISTING----------------------//
+//--------------------LOTTERY NAME EXISTING----------------------//
 app.post("/addlotteryexist", function (req, res) {
     let refProvider=req.body.refProvider
     var sql="select id,txtLotteryname from tbllotterymaster where refProvider='"+refProvider+"';";
@@ -55,11 +60,11 @@ app.post("/addlotteryexist", function (req, res) {
     });
     });
 
-//--------------------ADD LOTTERY EXISTING DETAILS--------------------- //
+//--------------------LOTTERY EXISTING DETAILS--------------------- //
 
 app.post("/addlotterydetails", function (req, res) {
     let id=req.body.id;
-    var sql="select dtLotterydrawdate,txtLotteryprize,txtCost,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery from tbllotterymaster where id = '"+id+"';";
+    var sql="select dtLotterydrawdate,txtCost,txtUnitSaleAmount,txtAdminChargeperUnit,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery,txtAgentCommission,txtTax ,txtOtherDeduct1 ,txtOtherDeduct2,txtCommissionrate from tbllotterymaster where id = '"+id+"';";
     con.query(sql,function(err,result){
         if(err) throw err;
         console.log(result);
