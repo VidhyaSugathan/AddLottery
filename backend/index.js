@@ -31,8 +31,9 @@ app.post("/addlottery", function (req, res) {
     let tax=req.body.tax;
     let commissionrate=req.body.commissionrate
     let otherdeduct1=req.body.otherdeduct1;
+    let charitypercent=req.body.charitypercent;
     let otherdeduct2=req.body.otherdeduct2;
-    var sql = "insert into tbllotterymaster(txtLotteryname,dtLotterydrawdate,txtCost,txtUnitSaleAmount,txtAdminChargeperUnit,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery,txtAgentCommission,txtTax ,txtOtherDeduct1 ,txtOtherDeduct2,txtCommissionrate,) values('" + lotteryname + "','" + lotterydate + "','"+unitsaleamount+"','"+adminchargeperunit+"','" + lotterycost + "','" + lotterystart + "','" + lotteryend + "','" + lotteryselection + "','" + lotterypurchase + "','" + lotterysub + "','"+agentcommission+"','"+tax+"','"+otherdeduct1+"','"+otherdeduct2+"','"+commissionrate+"' );";
+    var sql = "insert into tbllotterymaster(txtLotteryname,dtLotterydrawdate,txtCost,txtUnitSaleAmount,txtAdminChargeperUnit,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery,txtAgentCommission,txtTax ,txtOtherDeduct1 ,txtOtherDeduct2,txtCommissionrate,txtCharitypercent) values('" + lotteryname + "','" + lotterydate + "','"+unitsaleamount+"','"+adminchargeperunit+"','" + lotterycost + "','" + lotterystart + "','" + lotteryend + "','" + lotteryselection + "','" + lotterypurchase + "','" + lotterysub + "','"+agentcommission+"','"+tax+"','"+otherdeduct1+"','"+otherdeduct2+"','"+commissionrate+"','"+charitypercent+"' );";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log(result);
@@ -64,7 +65,7 @@ app.post("/addlotteryexist", function (req, res) {
 
 app.post("/addlotterydetails", function (req, res) {
     let id=req.body.id;
-    var sql="select dtLotterydrawdate,txtCost,txtUnitSaleAmount,txtAdminChargeperUnit,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery,txtAgentCommission,txtTax ,txtOtherDeduct1 ,txtOtherDeduct2,txtCommissionrate from tbllotterymaster where id = '"+id+"';";
+    var sql="select dtLotterydrawdate,txtCost,txtUnitSaleAmount,txtAdminChargeperUnit,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery,txtAgentCommission,txtTax ,txtOtherDeduct1 ,txtOtherDeduct2,txtCommissionrate,txtCharitypercent from tbllotterymaster where id = '"+id+"';";
     con.query(sql,function(err,result){
         if(err) throw err;
         console.log(result);
