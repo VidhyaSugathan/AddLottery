@@ -7,7 +7,7 @@ import { MdArrowDropDownCircle } from "react-icons/md";
 import Collapsible from "react-collapsible";
 export default function AddLottery() {
 
-    const [ids, setIds] = useState("");
+    const [id, setId] = useState("");
     const [lotterydate, setLotterydate] = useState("");
     const [otherdeduct1, setOtherdeduct1] = useState("");
     const [otherdeduct2, setOtherdeduct2] = useState("");
@@ -61,16 +61,16 @@ export default function AddLottery() {
         let req = {};
         let header = {};
         axios.post(url, req, header).then((res) => {
-            console.log("Hi", res.data)
+            console.log("Hiii", res.data)
             setArray(res.data)
         }).catch();
 
 
     }, []);
-    const Lotteryname = (ids) => {
+    const Lotteryname = (id) => {
         let url1 = "http://localhost:8000/addlotteryexist"
-        let req1 = { refProvider: ids }
-        console.log("req", ids)
+        let req1 = { refProvider: id }
+        console.log("req", id)
         let header1 = {}
         axios.post(url1, req1, header1)
             .then((res) => {
@@ -81,12 +81,12 @@ export default function AddLottery() {
 
         let url2 = "http://localhost:8000/addlotterydetails";
         let req2 = {
-            id: ids
+            id: id
         };
         let header2 = {};
         axios.post(url2, req2, header2)
             .then((res) => {
-                console.log("details", res.data)
+                console.log("details", id)
                 setArray2("hi", res.data)
                 setLotterydate(res.data[0].dtLotterydrawdate)
                 setAdminchargeperunit(res.data[0].txtAdminChargeperUnit)
@@ -104,7 +104,6 @@ export default function AddLottery() {
                 setLotteryselection(res.data[0].txtSelectionLimit)
             }).catch();
     }
-
     return (
         <>
             <div className="AddLottery">
@@ -116,9 +115,11 @@ export default function AddLottery() {
                             <select onClick={(e) => {
                                 Lotteryname(e.target.value)
                             }}
-                                onChange={(e) => { setProvider(e.target.value); }} >
+                            
+                                onChange={(e) =>{ setProvider(e.target.value); }} >
                                 <option value="" disabled selected hidden>Provider Name</option>
                                 {Array.map((itm, index) => {
+                                    
                                     return (
                                         <>
                                             <option value={itm.id}>{itm.txtProvidername}</option>
@@ -128,7 +129,7 @@ export default function AddLottery() {
                             </select>
                         </div>
                         <div>
-                            <select
+                            <select 
                                 onChange={(e) => {
                                     setLotteryname(e.target.value)
                                 }}>
@@ -136,7 +137,7 @@ export default function AddLottery() {
                                 {Array1.map((itm, index) => {
                                     return (
                                         <>
-                                            <option onClick={(e) => { Lotteryname(e.target.value) }} value={itm.ids}>{itm.txtLotteryname}</option>
+                                            <option onClick={(e) => { Lotteryname(e.target.value) }} value={itm.id}>{itm.txtLotteryname}</option>
                                         </>
                                     )
                                 })}
