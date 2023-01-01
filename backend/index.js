@@ -65,7 +65,7 @@ app.post("/addlotteryexist", function (req, res) {
 
 app.post("/addlotterydetails", function (req, res) {
     let id=req.body.id;
-    var sql="select dtLotterydrawdate,txtCost,txtUnitSaleAmount,txtAdminChargeperUnit,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery,txtAgentCommission,txtTax ,txtOtherDeduct1 ,txtOtherDeduct2,txtCommissionrate,txtCharitypercent from tbllotterymaster where id = '"+id+"';";
+    var sql="select dtLotterydrawdate,txtCost,txtUnitSaleAmount,txtAdminChargeperUnit,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery,txtAgentCommission,txtTax ,txtOtherDeduct1 ,txtOtherDeduct2,txtCommissionrate,txtCharitypercent,txtFirstprize,txtSecondprize,txtThirdprize,txtFourthprize,txtFifthprize,txtSixthprize from tbllotterymaster where id = '"+id+"';";
     con.query(sql,function(err,result){
         if(err) throw err;
         console.log(result);
@@ -78,14 +78,28 @@ app.post("/addlotterydetails", function (req, res) {
 app.post("/editlottery", function (req, res) {
     let id = req.body.id;
     let drawdate = req.body.drawdate;
-    let prize = req.body.prize;
+    let puramount = req.body.puramount;
+    let unitsaleamount = req.body.unitsaleamount;
+    let adminchargeperunit = req.body.adminchargeperunit;
+    let commissionrate = req.body.commissionrate;
+    let agentcommission = req.body.agentcommission;
+    let tax = req.body.tax;
+    let otherdeduct1 = req.body.otherdeduct1;
+    let otherdeduct2 = req.body.otherdeduct2;
+    let charitypercent = req.body.charitypercent;
+    let first = req.body.first;
+    let second = req.body.second;
+    let third = req.body.third;
+    let fourth = req.body.fourth;
+    let fifth = req.body.fifth;
+    let sixth = req.body.sixth;
     let cost = req.body.cost;
     let start = req.body.start;
     let end = req.body.end;
     let selection = req.body.selection;
     let purchase = req.body.purchase;
     let sublottery = req.body.sublottery;
-    var sql = "UPDATE tbllotterymaster SET dtLotterydrawdate='" + drawdate + "',txtLotteryprize= '" + prize + "',txtCost='" + cost + "',txtStartRange='" + start + "',txtEndRange='" + end + "',txtSelectionLimit='" + selection + "',txtPurchaseLimit='" + purchase + "',txtSubLottery='" + sublottery + "' WHERE id = '" + id + "';";
+    var sql = "UPDATE tbllotterymaster SET dtLotterydrawdate='" + drawdate + "',txtCost='" + cost + "',txtPurchasedamount='"+puramount+"' ,txtStartRange='" + start + "',txtEndRange='" + end + "',txtSelectionLimit='" + selection + "',txtPurchaseLimit='" + purchase + "',txtSubLottery='" + sublottery + "' ,txtUnitSaleAmount='"+unitsaleamount+"',txtAdminChargeperUnit='"+adminchargeperunit+"',txtCommissionrate='"+commissionrate+"',txtAgentCommission='"+agentcommission+"',txtTax='"+tax+"',txtOtherDeduct1='"+otherdeduct1+"',txtOtherDeduct2='"+otherdeduct2+"',txtCharitypercent='"+charitypercent+"',txtFirstprize='"+first+"',txtSecondprize='"+second+"',txtThirdprize='"+third+"',txtFourthprize='"+fourth+"',txtFifthprize='"+fifth+"',txtSixthprize='"+sixth+"' WHERE id = '" + id + "';";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log(result);
