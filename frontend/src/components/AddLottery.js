@@ -91,7 +91,7 @@ export default function AddLottery() {
                 console.log("lotteryname", res.data)
             })
             .catch();
-    }
+    
     let url2 = "http://localhost:8000/addlotterydetails";
     let req2 = {
         id: id
@@ -122,39 +122,42 @@ export default function AddLottery() {
             setFifth(res.data[0].txtFifthprize)
             setSixth(res.data[0].txtSixthprize)
         }).catch();
-const handleEditlottery=()=>{
-    let url3 = "http://localhost:8000/editlottery";
-    let req3 = {
-        id: id
-    };
-        let header3 = {};
-        axios.post(url3, req3, header3)
-            .then((res) => {
-                console.log("details", id)
-                setArray2("hi", res.data)
-                setLotterydate(res.data[0].dtLotterydrawdate)
-                setAdminchargeperunit(res.data[0].txtAdminChargeperUnit)
-                setLotterycost(res.data[0].txtCost)
-                setUnitsaleamount(res.data[0].txtUnitSaleAmount)
-                setAgentcommission(res.data[0].txtAgentCommission)
-                setTax(res.data[0].txtTax)
-                setCommissionrate(res.data[0].txtCommissionrate)
-                setOtherdeduct1(res.data[0].txtOtherDeduct1)
-                setOtherdeduct2(res.data[0].txtOtherDeduct2)
-                setLotterystart(res.data[0].txtStartRange)
-                setLotteryend(res.data[0].txtEndRange)
-                setLotterypurchase(res.data[0].txtPurchaseLimit)
-                setLotterysub(res.data[0].txtSubLottery)
-                setLotteryselection(res.data[0].txtSelectionLimit)
-                setFirst(res.data[0].txtFirstprize)
-                setSecond(res.data[0].txtSecondprize)
-                setThird(res.data[0].txtThirdprize)
-                setFourth(res.data[0].txtFourthprize)
-                setFifth(res.data[0].txtFifthprize)
-                setSixth(res.data[0].txtSixthprize)
+    }
+        const handleEditlottery = () => {
+            let url3 = "http://localhost:8000/editlottery"
+            let req3 = {
+                
+                drawdate: drawdate,
+                puramount: puramount,
+                unitsaleamount: unitsaleamount,
+                adminchargeperunit: adminchargeperunit,
+                lotterystart: lotterystart,
+                lotteryend: lotteryend,
+                lotterycost: lotterycost,
+                lotterypurchase: lotterypurchase,
+                lotteryselection: lotteryselect,
+                lotterysub: lotterysub,
+                agentcommission: agentcommission,
+                commissionrate: commissionrate,
+                tax: tax,
+                otherdeduct1: otherdeduct1,
+                otherdeduct2: otherdeduct2,
+                charitypercent: charitypercent,
+                first: first,
+                second: second,
+                third: third,
+                fourth: fourth,
+                fifth: fifth,
+                sixth: sixth
+            }
+            console.log(req3)
+            let header3 = {}
+            axios.post(url3, req3, header3).then((res) => {
+                console.log("Successedit", res.data);
             }).catch();
-    }
-    }
+        }
+    
+    
 return (
     <>
         <div className="AddLottery">
@@ -285,7 +288,7 @@ return (
                 </Collapsible>
                 <div className="AddLottery_buttons">
                     <div>
-                        <button onClick={(e)=>{handlleEditlottery(e)}}>Edit Lottery</button>
+                        <button onClick={(e)=>{handleEditlottery(e)}}>Edit Lottery</button>
                     </div>
                     <div>
                         <button onClick={(e) => { handleAddlottery(e) }}>Add Lottery</button>
