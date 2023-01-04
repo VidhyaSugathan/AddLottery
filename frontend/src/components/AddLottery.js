@@ -29,7 +29,6 @@ export default function AddLottery() {
     const [fourth, setFourth] = useState("")
     const [fifth, setFifth] = useState("")
     const [sixth, setSixth] = useState("")
-    const [lotteryname, setLotteryname] = useState("");
     const [puramount, setPuramount] = useState("");
 
     const [Array, setArray] = useState([]);
@@ -38,7 +37,6 @@ export default function AddLottery() {
     const handleAddlottery = () => {
         let url = "http://localhost:8000/addlottery"
         let req = {
-            lotteryname: lotteryname,
             drawdate: drawdate,
             puramount: puramount,
             unitsaleamount: unitsaleamount,
@@ -80,6 +78,7 @@ export default function AddLottery() {
 
 
     }, []);
+
     const Lotteryname = (id) => {
         let url1 = "http://localhost:8000/addlotteryexist"
         let req1 = { refProvider: id }
@@ -91,11 +90,13 @@ export default function AddLottery() {
                 console.log("lotteryname", res.data)
             })
             .catch();
-    
+        }
+const fetchDetails=(id)=>{
     let url2 = "http://localhost:8000/addlotterydetails";
     let req2 = {
         id: id
     };
+    
     let header2 = {};
     axios.post(url2, req2, header2)
         .then((res) => {
@@ -123,10 +124,10 @@ export default function AddLottery() {
             setSixth(res.data[0].txtSixthprize)
         }).catch();
     }
-        const handleEditlottery = () => {
+        const handleEditlottery = (id) => {
             let url3 = "http://localhost:8000/editlottery"
             let req3 = {
-                
+                id:id,
                 drawdate: drawdate,
                 puramount: puramount,
                 unitsaleamount: unitsaleamount,
@@ -185,9 +186,9 @@ return (
                     <div>
                         <select
                             onChange={(e) => {
-                                setLotteryname(e.target.value)
+                                fetchDetails(e.target.value)
                             }}>
-                            <option value="" disabled selected hidden>Lottery Name</option>
+                            <option  disabled selected hidden>Lottery Name</option>
                             {Array1.map((itm, index) => {
                                 return (
                                     <>
