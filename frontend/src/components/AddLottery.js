@@ -31,6 +31,7 @@ export default function AddLottery() {
     const [sixth, setSixth] = useState("")
     const [puramount, setPuramount] = useState("");
     const [lname, setLname] = useState("")
+    const [id,setId]=useState("");
 
 
     const [Array, setArray] = useState([]);
@@ -133,13 +134,13 @@ export default function AddLottery() {
                 setSixth(res.data[0].txtSixthprize)
             }).catch();
             setLname(obj.value)
-            setLname(obj.id)
+            setId(obj.id)
     }
-    const handleEditlottery = (id) => {
+    const handleEditlottery = () => {
         let url3 = "http://localhost:8000/editlottery"
         console.log("id",provider)
         let req3 = {
-            id: lname,
+            id: id,
             drawdate: drawdate,
             puramount: puramount,
             unitsaleamount: unitsaleamount,
