@@ -40,6 +40,9 @@
 .AddLottery select {
     font-size: 14px;
 }
+.AddLottery_sheader input{
+background-color: pink;
+}
 .AddLottery_subheader{
     padding: 10px;
     display: flex;

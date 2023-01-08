@@ -31,7 +31,7 @@ export default function AddLottery() {
     const [sixth, setSixth] = useState("")
     const [puramount, setPuramount] = useState("");
     const [lname, setLname] = useState("")
-    const [id,setId]=useState("");
+    const [id, setId] = useState("");
 
 
     const [Array, setArray] = useState([]);
@@ -71,7 +71,6 @@ export default function AddLottery() {
             console.log("Success", res.data);
         }).catch();
     }
-
     useEffect(() => {
         let url = "http://localhost:8000/addlotteryproviderfetch";
         let req = {};
@@ -84,11 +83,12 @@ export default function AddLottery() {
 
     }, []);
 
-    const Lotteryname = (id) => {
+    const Lotteryname = (id, e) => {
         let url1 = "http://localhost:8000/addlotteryexist"
         let req1 = { refProvider: id }
         console.log("req", id)
         let header1 = {}
+
         axios.post(url1, req1, header1)
             .then((res) => {
                 setArray1(res.data);
@@ -133,12 +133,12 @@ export default function AddLottery() {
                 setFifth(res.data[0].txtFifthprize)
                 setSixth(res.data[0].txtSixthprize)
             }).catch();
-            setLname(obj.value)
-            setId(obj.id)
+        setLname(obj.value)
+        setId(obj.id)
     }
     const handleEditlottery = () => {
         let url3 = "http://localhost:8000/editlottery"
-        console.log("id",provider)
+        console.log("id", provider)
         let req3 = {
             id: id,
             drawdate: drawdate,
@@ -173,7 +173,6 @@ export default function AddLottery() {
     }
 
 
-
     return (
         <>
             <div className="AddLottery">
@@ -198,20 +197,25 @@ export default function AddLottery() {
                             </select>
                         </div>
                         <div>
+
                             <select
                                 onChange={(e) => {
                                     fetchDetails(e.target.value)
-                                }}>
-                                <option disabled selected hidden>Lottery Name</option>
 
+                                }}>
+
+
+                                <option disabled selected hidden>Lottery Name</option>
                                 {Array1.map((itm, index) => {
                                     let add = '{"id":"' + itm.id + '","value":"' + itm.txtLotteryname + '"}';
                                     return (
                                         <>
+
                                             <option value={add}>{itm.txtLotteryname}</option>
                                         </>
                                     )
                                 })}
+
                             </select>
 
                         </div>

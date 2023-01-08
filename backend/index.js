@@ -34,14 +34,22 @@ app.post("/addlottery", function (req, res) {
     let charitypercent = req.body.charitypercent;
     let otherdeduct2 = req.body.otherdeduct2;
     let refProvider = req.body.refProvider;
-    var sql = "insert into tbllotterymaster(txtLotteryname,dtLotterydrawdate,txtCost,txtUnitSaleAmount,txtAdminChargeperUnit,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery,txtAgentCommission,txtTax ,txtOtherDeduct1 ,txtOtherDeduct2,txtCommissionrate,txtCharitypercent,refProvider) values('" + lotteryname + "','" + lotterydate + "','" + unitsaleamount + "','" + adminchargeperunit + "','" + lotterycost + "','" + lotterystart + "','" + lotteryend + "','" + lotteryselection + "','" + lotterypurchase + "','" + lotterysub + "','" + agentcommission + "','" + tax + "','" + otherdeduct1 + "','" + otherdeduct2 + "','" + commissionrate + "','" + charitypercent + "','" + refProvider + "' );";
+    let id=req.body.id;
+    var sql ="insert into tbllotterymaster(txtLotteryname,dtLotterydrawdate,txtCost,txtUnitSaleAmount,txtAdminChargeperUnit,txtStartRange,txtEndRange,txtSelectionLimit,txtPurchaseLimit,txtSubLottery,txtAgentCommission,txtTax ,txtOtherDeduct1 ,txtOtherDeduct2,txtCommissionrate,txtCharitypercent,refProvider) values('" + lotteryname + "','" + lotterydate + "','" + unitsaleamount + "','" + adminchargeperunit + "','" + lotterycost + "','" + lotterystart + "','" + lotteryend + "','" + lotteryselection + "','" + lotterypurchase + "','" + lotterysub + "','" + agentcommission + "','" + tax + "','" + otherdeduct1 + "','" + otherdeduct2 + "','" + commissionrate + "','" + charitypercent + "','" + refProvider + "' );";
+    var sql1="insert into  tblresultmaster set refLotterymaster = LAST_INSERT_ID('"+id+"')";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log(result);
+        console.log("ji",sql)
         res.send(result);
     });
+    con.query(sql1,function(err,result){
+        if (err) throw err;
+        console.log(result);
+        console.log("j",sql1)
+        res.send(result);
+    })
 });
-
 //--------------------ADD LOTTERY PROVIDER----------------------//
 app.post("/addlotteryproviderfetch", function (req, res) {
     var sql = "SELECT id, txtProvidername FROM tblprovider;";
